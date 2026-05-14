@@ -199,7 +199,7 @@ function addTask() {
 
     console.log("Sending:", user_id, username); // 🔥 debug
 
-    fetch("http://13.216.24/6.31:3000/addTask", {
+    fetch("http://13.216.246.31:3000/addTask", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
@@ -218,7 +218,7 @@ function editTask(id, oldTask) {
 
     if (!newTask) return;
 
-    fetch(`http://13.216.24/6.31:3000/task/${id}`, {
+    fetch(`http://13.216.246.31:3000/task/${id}`, {
         method: "PUT",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({ task: newTask })
@@ -228,7 +228,7 @@ function editTask(id, oldTask) {
 function displayTasks() {
     let user_id = localStorage.getItem("user_id");
 
-    fetch(`http://13.216.24/6.31:3000/tasks/${user_id}`)
+    fetch(`http://13.216.246.31:3000/tasks/${user_id}`)
     .then(res => res.json())
     .then(tasks => {
 
@@ -309,7 +309,7 @@ function displayTasks() {
 }
 // ✔ TOGGLE COMPLETE
 function toggle(id, currentStatus) {
-    fetch(`http://13.216.24/6.31:3000/task/${id}`, {
+    fetch(`http://13.216.246.31:3000/task/${id}`, {
         method: "PUT",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
@@ -320,18 +320,18 @@ function toggle(id, currentStatus) {
 
 // ❌ DELETE TASK
 function deleteTask(id) {
-    fetch(`http://13.216.24/6.31:3000/${id}`, {
+    fetch(`http://13.216.246.31:3000/${id}`, {
         method: "DELETE"
     }).then(() => displayTasks());
 }
 
 // 🗑 CLEAR ALL
 function clearAll() {
-    fetch("http://13.216.24/6.31:3000/tasks")
+    fetch("http://13.216.246.31:3000/tasks")
     .then(res => res.json())
     .then(tasks => {
         tasks.forEach(t => {
-            fetch(`http://13.216.24/6.31:3000/task/${t.id}`, {
+            fetch(`http://13.216.246.31:3000/task/${t.id}`, {
                 method: "DELETE"
             });
         });
@@ -347,7 +347,7 @@ function logout() {
 
 // 📅 FILTER BY DATE
 function filterByDate(d) {
-    fetch("http://13.216.24/6.31:3000/tasks")
+    fetch("http://13.216.246.31:3000/tasks")
     .then(res => res.json())
     .then(tasks => {
         let list = document.getElementById("taskList");
